@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block content %}
+{% if all_items %}
+<table class="table table-bordered">
+    <br>
+    {% for content in all_items %}
+    {% if content.status %}
+    <tr class="table-secondary">
+        <td class="striker">{{ content.item }}</td>
+        <td>
+            <center><a href="{% url 'undone' content.id %}">Not Done</a></center>
+        </td>
+    </tr>
+    {% else %}
+    <tr>
+        <td>{{ content.item }}</td>
+        <td>
+            <center><a href="{% url 'done' content.id %}">Done</a></center>
+        </td>
+    </tr>
+    {% endif %}
+    {% endfor %}
+</table>
+{% endif %}
+{% endblock %}
